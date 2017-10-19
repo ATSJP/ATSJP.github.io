@@ -1,74 +1,67 @@
 ﻿
+(function($) {
+	"use strict";
+	var mainApp = {
+		scroll_fun : function() {
 
+			// CUSTOM SCROLL SCRIPT FUNCTION FOR NAVBAR
+			$(function() {
+				$('.scrollclass a').bind('click', function(event) { // just pass
+																	// scrollclass
+																	// in design
+																	// and start
+																	// scrolling
+					var $anchor = $(this);
+					$('html, body').stop().animate({
+						scrollTop : $($anchor.attr('href')).offset().top
+					}, 1200, 'easeInOutExpo');
+					event.preventDefault();
+				});
+			});
 
-(function ($) {
-    "use strict";
-    var mainApp = {
-        scroll_fun: function () {
+		},
 
-            //CUSTOM SCROLL SCRIPT FUNCTION FOR NAVBAR 
-          $(function () {
-              $('.scrollclass a').bind('click', function (event) { //just pass scrollclass in design and start scrolling
-                  var $anchor = $(this);
-                  $('html, body').stop().animate({
-                      scrollTop: $($anchor.attr('href')).offset().top
-                  }, 1200, 'easeInOutExpo');
-                  event.preventDefault();
-              });
-          });
-            
+		gallery_fun : function() {
+			/*
+			 * ==================================== FOR IMAGE/GALLERY POPUP
+			 * ======================================
+			 */
+			$("a.preview").prettyPhoto({
+				social_tools : false
+			});
 
-        },
-        
-        gallery_fun: function () {
-            /*====================================
-                 FOR IMAGE/GALLERY POPUP
-            ======================================*/
-            $("a.preview").prettyPhoto({
-                social_tools: false
-            });
+			/*
+			 * ==================================== FOR IMAGE/GALLERY FILTER
+			 * ======================================
+			 */
 
-            /*====================================
-            FOR IMAGE/GALLERY FILTER
-            ======================================*/
+			// MixItUp plugin
+			// http://mixitup.io
+			$('#port-folio').mixitup({
+				targetSelector : '.portfolio-item',
+				filterSelector : '.filter',
 
-            // MixItUp plugin
-            // http://mixitup.io
+			});
+		},
+		nicescroll_fun : function() {
+			$("html").niceScroll();
+		},
 
-            $('#port-folio').mixitup({
-                targetSelector: '.portfolio-item',
-                filterSelector: '.filter',
+		custom_fun : function() {
+			/*
+			 * ==================================== WRITE YOUR SCRIPTS BELOW
+			 * ======================================
+			 */
 
+		},
 
-            });
-        },
-        nicescroll_fun:function()
-        {
-            $("html").niceScroll();
-        },
+	}
 
-      
-        custom_fun:function()
-        {
-            /*====================================
-             WRITE YOUR   SCRIPTS  BELOW
-            ======================================*/
+	$(document).ready(function() {
+		mainApp.scroll_fun();
+		mainApp.gallery_fun();
+		mainApp.nicescroll_fun();
+		mainApp.custom_fun();
 
-
-
-
-        },
-
-    }
-   
-   
-    $(document).ready(function () {
-        mainApp.scroll_fun();
-        mainApp.gallery_fun();
-        mainApp.nicescroll_fun();
-        mainApp.custom_fun();
-
-    });
+	});
 }(jQuery));
-
-
